@@ -1,0 +1,12 @@
+{
+  "name": "pluonggr/328/diner",
+  "authors": [
+    {
+      "name": "Patrick Luong",
+      "email": "luong.patrick@student.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
