@@ -20,7 +20,17 @@ $f3->route('GET /', function() {
 });
 
 $f3->route('GET /breakfast', function() {
-    echo "Breaskfast page";
+    //echo "Breaskfast page";
+
+    $view = new Template();
+    echo $view->render('views/breakfast.html');
+});
+
+$f3->route('GET /lunch', function() {
+    //echo "lunch page";
+
+    $view = new Template();
+    echo $view->render('views/lunch.html');
 });
 
 //Run fat free
