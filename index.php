@@ -1,38 +1,84 @@
 <?php
 
 //Turn on error reporting
-ini_set('display_error', 1);
+ini_set('display_errors', 1);
 error_reporting(E_ALL);
+
+//start a session
+session_start();
+
 //Require the autoload file
 require_once('vendor/autoload.php');
 
 //Create an instance of the Base class
-//:: is used to call a method within the static Base class within fat-free
 $f3 = Base::instance();
 
 //Define a default route
-//
 $f3->route('GET /', function() {
-    //echo "Diner Project";
+    //echo "Diner project";
 
     $view = new Template();
     echo $view->render('views/home.html');
 });
 
+//Define a breakfast route
 $f3->route('GET /breakfast', function() {
-    //echo "Breaskfast page";
+    //echo "Breakfast page";
 
     $view = new Template();
-    echo $view->render('views/breakfast.html');
+    echo $view->render('views/breakfast-menu.html');
 });
 
+//Define a lunch route
 $f3->route('GET /lunch', function() {
-    //echo "lunch page";
+    //echo "Breakfast page";
 
     $view = new Template();
     echo $view->render('views/lunch.html');
 });
 
-//Run fat free
-// -> is invoking the run() method in the fat-free
+//Define a lunch route
+$f3->route('GET /breakfast/brunch', function() {
+    //echo "Breakfast page";
+
+    $view = new Template();
+    echo $view->render('views/breakfast-menu.html');
+});
+
+//Define an order route
+$f3->route('GET /order', function() {
+    //echo "Order page";
+
+    $view = new Template();
+    echo $view->render('views/orderForm1.html');
+});
+
+//Define an order2 route
+$f3->route('POST /order2', function() {
+    //echo "Order page";
+    //Move orderForm1 data from POST to SESSION
+    var_dump ($_POST);
+    $_SESSION['food'] = $_POST['food'];
+    $_SESSION['meal'] = $_POST['meal'];
+    $view = new Template();
+    echo $view->render('views/orderForm2.html');
+});
+
+//Define a summary route
+$f3->route('POST /summary', function() {
+    var_dump($_POST);
+    if(empty($_POST['conds'])){
+        $conds = "none selected";
+    } else {
+        $conds = implode(", ", $_POST['conds']);
+    }
+    $_SESSION['conds'] = $conds;
+
+    $view = new Template();
+    echo $view->render('views/summary.html');
+});
+
+//Define a summary route -> orderSummary.html
+
+//Run fat-free
 $f3->run();
