@@ -19,7 +19,7 @@
             <label class="col-sm-4 control-label">Select a meal</label>
             <div class="col-sm-4">
                 <repeat group="{{ @meals }}" value="{{ @meal }}">
-                    <label><input type="radio" name="meal" value="{{ @meal }}">
+                    <label><input type="radio" name="meals[]" value="{{ @meal }}">
                         {{ ucfirst(@meal) }}</label><br>
                 </repeat>
             </div>
