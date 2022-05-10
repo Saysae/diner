@@ -9,6 +9,7 @@ session_start();
 
 //Require the autoload file
 require_once('vendor/autoload.php');
+require_once('model/data-layer.php');
 
 //Create an instance of the Base class
 $f3 = Base::instance();
@@ -46,20 +47,26 @@ $f3->route('GET /breakfast/brunch', function() {
 });
 
 //Define an order route
-$f3->route('GET /order', function() {
+$f3->route('GET /order', function($f3) {
     //echo "Order page";
+
+    $f3->set('meals', getMeals());
 
     $view = new Template();
     echo $view->render('views/orderForm1.html');
 });
 
 //Define an order2 route
-$f3->route('POST /order2', function() {
+$f3->route('POST /order2', function($f3) {
     //echo "Order page";
     //Move orderForm1 data from POST to SESSION
     var_dump ($_POST);
     $_SESSION['food'] = $_POST['food'];
     $_SESSION['meal'] = $_POST['meal'];
+
+    //add data to the hive
+    $f3->set('conds', getConds());
+
     $view = new Template();
     echo $view->render('views/orderForm2.html');
 });
