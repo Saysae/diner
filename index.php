@@ -58,11 +58,12 @@ $f3->route('GET|POST /order', function($f3) {
         $food = $_POST['food'];
         //we are setting so we can save user data so data can be saved if they refresh or go back
         $f3->set('userFood', $food);
-        $meal = "";
-        if(isset($_POST['meal'])){
+        //$meal = "";
+/*        if(isset($_POST['meal'])){
             $meal = $_POST['meal'];
-        }
-        //short hand $meal = isset($_POST['meal']) ? $_POST['meal'] : "";
+        }*/
+        //short hand
+        $meal = isset($_POST['meal']) ? $_POST['meal'] : "";
 
         //adding user selection to fat free hive
         $f3->set('userMeal', $meal);
