@@ -1,7 +1,7 @@
 <?php
 
 /**
- * diner/model/validation.php
+ * diner/model/data.php
  * Validate user input from the diner app
  *
  */
@@ -15,5 +15,9 @@ function validFood($food){
     }
 */
     return strlen(trim($food)) >= 2;
+}
 
+//Validate meal
+function validMeal($meal){
+    return in_array($meal, getMeals());
 }
