@@ -122,4 +122,4 @@ class Controller
         //Clear the session array
         session_destroy();
     }
-}
+}// end of class
